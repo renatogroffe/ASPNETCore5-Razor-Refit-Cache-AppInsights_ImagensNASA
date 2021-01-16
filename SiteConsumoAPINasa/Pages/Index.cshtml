@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+@{
+    var dataConsulta = $"{Model.DataConsulta:dd/MM/yyyy}";
+    ViewData["Title"] = $"Imagem de {dataConsulta}";
+}
+
+<h2 style="text-align:center;">
+    @Model.Saudacao
+    Resultado do acesso à API REST da NASA -
+    Imagem do dia @dataConsulta
+</h2>
+
+<h3 style="text-align:center;">@Model.ImagemDiariaNASA.Title</h3>
+
+<div style="text-align: center;">
+    @if (Model.ImagemDiariaNASA.Media_type == "image")
+    {
+        <img src="@Model.ImagemDiariaNASA.Url" style="height: 60%; width: 60%" />
+    }
+    else
+    {
+        <iframe id="apod_vid_id" type="text/html" src="@Model.ImagemDiariaNASA.Url"
+                width="640" height="385" frameborder="0"></iframe>
+    }
+</div>
+
+<p style="margin-top: 15px; margin-left: 20%; width: 60%;">
+    @Model.ImagemDiariaNASA.Explanation
+</p>
